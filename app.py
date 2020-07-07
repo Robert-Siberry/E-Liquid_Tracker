@@ -26,12 +26,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
 db = SQLAlchemy(app)
 
 
-class Eliquids(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    brand = db.Column(db.String(30), nullable=False)
-    name = db.Column(db.String(30), nullable=False)
-    description = db.Column(db.String(100), nullable=False)
-    flavours = db.Column(db.String(300), nullable=False, unique=True)
+class eliquids(db.Model):
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    brand = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
+    flavours = db.Column(db.String(300), nullable=False)
 
     def __repr__(self):
         return ''.join(
@@ -46,8 +46,8 @@ class Eliquids(db.Model):
 @app.route('/')
 @app.route('/home')
 def home():
-    post_data = Eliquids.query.all()
-    return render_template('homepage.html', description='Homepage', Eliquids=post_data)
+    post_data = eliquids.query.all()
+    return render_template('homepage.html', description='Homepage', eliquids=post_data)
 
 
 @app.route('/about')
@@ -59,7 +59,7 @@ def about():
 def add():
     form = EliquidsForm()
     if form.validate_on_submit():
-        post_data = Eliquids(
+        post_data = eliquids(
             brand=form.brand.data,
             name=form.name.data,
             description=form.description.data,
@@ -75,9 +75,9 @@ def add():
 @app.route('/create')
 def create():
     db.create_all()
-    post = Eliquids(brand='Bad Drip', name='Dont Care Bear', description='A candied treat that you can enjoy all day',
+    post = eliquids(brand='Bad Drip', name='Dont Care Bear', description='A candied treat that you can enjoy all day',
                     flavours="Gummy Bears, melon and Peach")
-    post2 = Eliquids(brand='Strapped', name='Tangy Tutti Frutti', description='A tongue tingling take on tutti frutti',
+    post2 = eliquids(brand='Strapped', name='Tangy Tutti Frutti', description='A tongue tingling take on tutti frutti',
                      flavours="Candied fruits and tangy Sherbet")
     db.session.add(post)
     db.session.add(post2)
@@ -85,12 +85,12 @@ def create():
     return "added a table and populated it with some info"
 
 
-@app.route('/delete')
-def delete():
-    # db.drop_all()
-    db.session.query(Eliquids).delete()
-    db.session.commit()
-    return "You have deleted everything, now the world is going to end!!!!!"
+#@app.route('/delete')
+#def delete():
+    #db.drop_all()
+    #db.session.query(eliquids).delete()
+    #db.session.commit()
+    #return "You have deleted everything, now the world is going to end!!!!!"
 
 
 if __name__ == '__main__':
