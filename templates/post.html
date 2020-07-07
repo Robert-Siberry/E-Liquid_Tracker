@@ -5,11 +5,11 @@
         <form method="post" action="">
             {{ form.hidden_tag() }}
             <div class="form-group">
-                {{ form.f_name.label }}
-                {{ form.f_name }}
-                {% if form.f_name.errors %}
+                {{ form.brand.label }}
+                {{ form.brand }}
+                {% if form.brand.errors %}
                     <div class="error">
-                        {% for error in form.f_name.errors %}
+                        {% for error in form.brand.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
@@ -17,11 +17,11 @@
             </div>
             <br>
             <div class="form-group">
-                {{ form.l_name.label }}
-                {{ form.l_name }}
-                {% if form.l_name.errors %}
+                {{ form.name.label }}
+                {{ form.name }}
+                {% if form.name.errors %}
                     <div class="error">
-                        {% for error in form.l_name.errors %}
+                        {% for error in form.name.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
@@ -29,11 +29,11 @@
             </div>
             <br>
             <div class="form-group">
-                {{ form.title.label }}
-                {{ form.title }}
-                {% if form.title.errors %}
+                {{ form.description.label }}
+                {{ form.description }}
+                {% if form.description.errors %}
                     <div class="error">
-                        {% for error in form.title.errors %}
+                        {% for error in form.description.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
@@ -41,11 +41,11 @@
             </div>
             <br>
             <div class="form-group">
-                {{ form.content.label }}
-                {{ form.content }}
-                {% if form.content.errors %}
+                {{ form.flavours.label }}
+                {{ form.flavours }}
+                {% if form.flavours.errors %}
                     <div class="error">
-                        {% for error in form.content.errors %}
+                        {% for error in form.flavours.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>

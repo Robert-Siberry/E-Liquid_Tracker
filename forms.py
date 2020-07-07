@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length
 
 class PostsForm(FlaskForm):
     f_name = StringField(
-        'First Name',
+        'Brand',
         validators=[
             DataRequired(),
             Length(min=1, max=30)
@@ -13,23 +13,23 @@ class PostsForm(FlaskForm):
     )
 
     l_name = StringField(
-        'Last Name',
+        'Name',
         validators=[
             DataRequired(),
-            Length(min=1, max=30)
+            Length(min=1, max=50)
         ]
     )
 
     title = StringField(
-        'Title',
+        'Description',
         validators=[
             DataRequired(),
-            Length(min=4, max=100)
+            Length(min=10, max=100)
         ]
     )
 
     content = StringField(
-        'Content',
+        'Flavours',
         validators=[
             DataRequired(),
             Length(min=4, max=300)

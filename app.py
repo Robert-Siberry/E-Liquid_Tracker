@@ -28,17 +28,17 @@ db = SQLAlchemy(app)
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    f_name = db.Column(db.String(30), nullable=False)
-    l_name = db.Column(db.String(30), nullable=False)
-    title = db.Column(db.String(100), nullable=False)
-    content = db.Column(db.String(300), nullable=False, unique=True)
+    brand = db.Column(db.String(30), nullable=False)
+    name = db.Column(db.String(30), nullable=False)
+    description = db.Column(db.String(100), nullable=False)
+    flavours = db.Column(db.String(300), nullable=False, unique=True)
 
     def __repr__(self):
         return ''.join(
             [
-                'Title: ' + self.title + '\n'
-                'First name: ' +self.f_name, + ' ' + self.l_name +'\n'
-                'Content: ' +self.content
+                'description: ' + self.description + '\n'
+                'First name: ' +self.brand, + ' ' + self.name +'\n'
+                'flavours: ' +self.flavours
             ]
         )
 
@@ -49,34 +49,34 @@ class Posts(db.Model):
 @app.route('/home')
 def home():
     post_data = Posts.query.all()
-    return render_template('homepage.html', title='Homepage', posts=post_data)
+    return render_template('homepage.html', description='Homepage', posts=post_data)
 
 
 @app.route('/about')
 def about():
-    return render_template('about.html', title='About')
+    return render_template('about.html', description='About')
 
 @app.route('/add', methods=['GET', 'POST'])
 def add():
     form = PostsForm()
     if form.validate_on_submit():
         post_data = Posts(
-            f_name=form.f_name.data,
-            l_name=form.l_name.data,
-            title=form.title.data,
-            content=form.content.data
+            brand=form.brand.data,
+            name=form.name.data,
+            description=form.description.data,
+            flavours=form.flavours.data
         )
         db.session.add(post_data)
         db.session.commit()
         return redirect(url_for('home'))
     else:
-        return render_template('post.html', title='add a post', form=form)
+        return render_template('post.html', description='add a post', form=form)
 
 @app.route('/create')
 def create():
     db.create_all()
-    post = Posts(f_name='Robert', l_name='Siberry', title='Dr', content="An interesting canning article")
-    post2 = Posts(f_name='Pete', l_name='Repeat', title='Mr', content="Pete and Repeat where on a boat, Pete fell out who was left?")
+    post = Posts(brand='Robert', name='Siberry', description='Dr', flavours="An interesting canning article")
+    post2 = Posts(brand='Pete', name='Repeat', description='Mr', flavours="Pete and Repeat where on a boat, Pete fell out who was left?")
     db.session.add(post)
     db.session.add(post2)
     db.session.commit()
