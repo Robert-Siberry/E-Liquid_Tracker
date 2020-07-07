@@ -3,7 +3,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
 
 
-class EliquidForm(FlaskForm):
+class EliquidsForm(FlaskForm):
     brand = StringField(
         'Brand',
         validators=[
@@ -24,7 +24,7 @@ class EliquidForm(FlaskForm):
         'Description',
         validators=[
             DataRequired(),
-            Length(min=10, max=300)
+            Length(min=10, max=1000)
         ]
     )
 

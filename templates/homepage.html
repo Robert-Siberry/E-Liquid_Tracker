@@ -7,12 +7,12 @@
         </p>
     </h1>
 
-    {% for post in eliquids %}
+    {% for post in eliquid %}
         <div>
-            <h3><b>Brand name: </b> {{ post.brand }}</h3>
-            <p><b>Product name: </b> {{ post.name }}</p>
-            <p><b>Description:</b> {{ post.description }}</p>
-            <p><b>Flavours: </b>{{ post.flavours }}</p>
+            <h3><b>Brand name: </b> {{ eliquid.brand }}</h3>
+            <p><b>Product name: </b> {{ eliquid.name }}</p>
+            <p><b>Description:</b> {{ eliquid.description }}</p>
+            <p><b>Flavours: </b>{{ eliquid.flavours }}</p>
         </div>
     {% endfor %}
 

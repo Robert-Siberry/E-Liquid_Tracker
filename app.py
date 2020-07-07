@@ -37,8 +37,8 @@ class Eliquids(db.Model):
         return ''.join(
             [
                 'description: ' + self.description + '\n'
-                'brand: ' + self.brand, + ' ' + self.name + '\n'
-                'flavours: ' + self.flavours
+                                                     'brand: ' + self.brand, + ' ' + self.name + '\n'
+                                                                                                 'flavours: ' + self.flavours
             ]
         )
 
@@ -75,15 +75,10 @@ def add():
 @app.route('/create')
 def create():
     db.create_all()
-    post = Eliquids(brand='Bad Drip', name='Dont Care Bear', description='No bears were harmed in the making of this '
-                                                                      'liquid, well, only the gummy kind a candied '
-                                                                      'treat that you can enjoy all day, ',
-                 flavours="Gummy Bears, melon and Peach")
-    post2 = Eliquids(brand='Strapped', name='Tangy Tutti Frutti', description='Tangy Tutti Frutti by Strapped is a '
-                                                                           'tongue tingling takedown of tutti frutti '
-                                                                           'sourness that will drive you insane with '
-                                                                           'sweetness.',
-                  flavours="Candied Fruits and tangy Sherbet")
+    post = Eliquids(brand='Bad Drip', name='Dont Care Bear', description='A candied treat that you can enjoy all day',
+                    flavours="Gummy Bears, melon and Peach")
+    post2 = Eliquids(brand='Strapped', name='Tangy Tutti Frutti', description='A tongue tingling take on tutti frutti',
+                     flavours="Candied fruits and tangy Sherbet")
     db.session.add(post)
     db.session.add(post2)
     db.session.commit()
