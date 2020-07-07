@@ -1,14 +1,18 @@
 {% extends "layout.html" %}
 
 {% block body_content %}
-    <h1>This is some kind of webpage that shows random stuff!!</h1>
+    <h1 style="background-color: darkblue">
+        <p style="color: red">
+            <b>E-Liquid Tracker Homepage</b>
+        </p>
+    </h1>
 
-    {% for post in posts %}
+    {% for post in eliquids %}
         <div>
-            <h3>{{ post.title }}</h3>
-            <p><b>First name: </b> {{ post.f_name }}</p>
-            <p><b>Last name: </b> {{ post.l_name }}</p>
-            <p>{{ post.content }}</p>
+            <h3><b>Brand name: </b> {{ post.brand }}</h3>
+            <p><b>Product name: </b> {{ post.name }}</p>
+            <p><b>Description:</b> {{ post.description }}</p>
+            <p><b>Flavours: </b>{{ post.flavours }}</p>
         </div>
     {% endfor %}
 

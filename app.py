@@ -3,15 +3,14 @@ from flask import render_template
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
 
-#my IP 77.100.120.192
-#token hex aac919961fe858a46dba9c060cf7fc12
-from forms import PostsForm
+# my IP 77.100.120.192
+# token hex aac919961fe858a46dba9c060cf7fc12
+from forms import EliquidsForm
 
 app = Flask(__name__)
-#aac919961fe858a46dba9c060cf7fc12
-#make more secure
+
 app.config['SECRET_KEY'] = environ.get('SECRET_KEY')
-#app.config['SLQALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@34.89.109.23:3306/posts'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
@@ -26,7 +25,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + \
                                         environ.get('MYSQL_DB_NAME')
 db = SQLAlchemy(app)
 
-class Posts(db.Model):
+
+class Eliquids(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     brand = db.Column(db.String(30), nullable=False)
     name = db.Column(db.String(30), nullable=False)
@@ -37,30 +37,29 @@ class Posts(db.Model):
         return ''.join(
             [
                 'description: ' + self.description + '\n'
-                'First name: ' +self.brand, + ' ' + self.name +'\n'
-                'flavours: ' +self.flavours
+                'brand: ' + self.brand, + ' ' + self.name + '\n'
+                'flavours: ' + self.flavours
             ]
         )
-
-
 
 
 @app.route('/')
 @app.route('/home')
 def home():
-    post_data = Posts.query.all()
-    return render_template('homepage.html', description='Homepage', posts=post_data)
+    post_data = Eliquids.query.all()
+    return render_template('homepage.html', description='Homepage', Eliquids=post_data)
 
 
 @app.route('/about')
 def about():
     return render_template('about.html', description='About')
 
+
 @app.route('/add', methods=['GET', 'POST'])
 def add():
-    form = PostsForm()
+    form = EliquidsForm()
     if form.validate_on_submit():
-        post_data = Posts(
+        post_data = Eliquids(
             brand=form.brand.data,
             name=form.name.data,
             description=form.description.data,
@@ -72,11 +71,19 @@ def add():
     else:
         return render_template('post.html', description='add a post', form=form)
 
+
 @app.route('/create')
 def create():
     db.create_all()
-    post = Posts(brand='Robert', name='Siberry', description='Dr', flavours="An interesting canning article")
-    post2 = Posts(brand='Pete', name='Repeat', description='Mr', flavours="Pete and Repeat where on a boat, Pete fell out who was left?")
+    post = Eliquids(brand='Bad Drip', name='Dont Care Bear', description='No bears were harmed in the making of this '
+                                                                      'liquid, well, only the gummy kind a candied '
+                                                                      'treat that you can enjoy all day, ',
+                 flavours="Gummy Bears, melon and Peach")
+    post2 = Eliquids(brand='Strapped', name='Tangy Tutti Frutti', description='Tangy Tutti Frutti by Strapped is a '
+                                                                           'tongue tingling takedown of tutti frutti '
+                                                                           'sourness that will drive you insane with '
+                                                                           'sweetness.',
+                  flavours="Candied Fruits and tangy Sherbet")
     db.session.add(post)
     db.session.add(post2)
     db.session.commit()
@@ -84,10 +91,9 @@ def create():
 
 
 @app.route('/delete')
-
 def delete():
-    #db.drop_all()
-    db.session.query(Posts).delete()
+    # db.drop_all()
+    db.session.query(Eliquids).delete()
     db.session.commit()
     return "You have deleted everything, now the world is going to end!!!!!"
 

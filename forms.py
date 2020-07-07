@@ -3,8 +3,8 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length
 
 
-class PostsForm(FlaskForm):
-    f_name = StringField(
+class EliquidForm(FlaskForm):
+    brand = StringField(
         'Brand',
         validators=[
             DataRequired(),
@@ -12,7 +12,7 @@ class PostsForm(FlaskForm):
         ]
     )
 
-    l_name = StringField(
+    name = StringField(
         'Name',
         validators=[
             DataRequired(),
@@ -20,20 +20,20 @@ class PostsForm(FlaskForm):
         ]
     )
 
-    title = StringField(
+    description = StringField(
         'Description',
+        validators=[
+            DataRequired(),
+            Length(min=10, max=300)
+        ]
+    )
+
+    flavours = StringField(
+        'Flavours',
         validators=[
             DataRequired(),
             Length(min=10, max=100)
         ]
     )
 
-    content = StringField(
-        'Flavours',
-        validators=[
-            DataRequired(),
-            Length(min=4, max=300)
-        ]
-    )
-
-    submit = SubmitField('Submit a Post')
+    submit = SubmitField('Add a new E-Liquid')
