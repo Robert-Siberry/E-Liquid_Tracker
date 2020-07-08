@@ -5,7 +5,7 @@ from os import environ
 
 # my IP 77.100.120.192
 # token hex aac919961fe858a46dba9c060cf7fc12
-from forms import EliquidsForm
+from forms import EliquidsForm, RemoveForm
 
 app = Flask(__name__)
 
@@ -85,17 +85,17 @@ def create():
     return "added a table and populated it with some info"
 
 
-@app.route('/delete', methods=['EVALUATE', 'FETCH'])
+@app.route('/delete', methods=['GET', 'POST'])
 def delete():
     form = RemoveForm()
     if form.validate_on_submit():
-        post_data = eliquids(
+        delete_data = eliquids(
             brand=form.brand.data,
             name=form.name.data,
             description=form.description.data,
             flavours=form.flavours.data
         )
-        db.session.query(eliquids).delete(post_data)
+        db.session.query(eliquids).filter_by(name=form.name.data).delete()
         db.session.commit()
         return redirect(url_for('home'))
     else:
