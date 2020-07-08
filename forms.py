@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length
 
 class EliquidsForm(FlaskForm):
     brand = StringField(
-        'brand',
+        'Brand',
         validators=[
             DataRequired(),
             Length(min=1, max=30)
@@ -13,7 +13,7 @@ class EliquidsForm(FlaskForm):
     )
 
     name = StringField(
-        'name',
+        'Name',
         validators=[
             DataRequired(),
             Length(min=1, max=50)
@@ -21,7 +21,7 @@ class EliquidsForm(FlaskForm):
     )
 
     description = StringField(
-        'description',
+        'Description',
         validators=[
             DataRequired(),
             Length(min=10, max=1000)
@@ -29,7 +29,7 @@ class EliquidsForm(FlaskForm):
     )
 
     flavours = StringField(
-        'flavours',
+        'Flavours',
         validators=[
             DataRequired(),
             Length(min=10, max=100)
