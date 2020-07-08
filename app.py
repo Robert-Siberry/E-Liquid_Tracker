@@ -85,13 +85,21 @@ def create():
     return "added a table and populated it with some info"
 
 
-#@app.route('/delete')
-#def delete():
-    #db.drop_all()
-    #db.session.query(eliquids).delete()
-    #db.session.commit()
-    #return "You have deleted everything, now the world is going to end!!!!!"
-
+@app.route('/delete', methods=['EVALUATE', 'FETCH'])
+def delete():
+    form = RemoveForm()
+    if form.validate_on_submit():
+        post_data = eliquids(
+            brand=form.brand.data,
+            name=form.name.data,
+            description=form.description.data,
+            flavours=form.flavours.data
+        )
+        db.session.query(eliquids).delete(post_data)
+        db.session.commit()
+        return redirect(url_for('home'))
+    else:
+        return render_template('post.html', title='add a post', form=form)
 
 if __name__ == '__main__':
     app.run()
