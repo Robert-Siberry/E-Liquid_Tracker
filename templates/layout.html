@@ -14,6 +14,11 @@
         <a style="font-size: larger", href="{{ url_for('about') }}">|About|</a>
         <a style="font-size: larger", href="{{ url_for('add') }}">|Add New|</a>
         <a style="font-size: larger", href="{{ url_for('delete') }}">|Remove|</a>
+            <a href="{{ url_for('register') }}">|Register|</a>
+        <a href="{{ url_for('login') }}">|Login|</a>
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('logout') }}">|Log Out|</a>
+        {% endif %}
     </div>
     {% block body_content %}{% endblock %}
 </body>
