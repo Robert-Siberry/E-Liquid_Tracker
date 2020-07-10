@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body_content %}
+    <h1 style="background-color: darkblue">
+        <p style="color: darkred">
+            <b>My E-Liquids</b>
+        </p>
+    </h1>
+
+{% for eliquids in eliquids %}
+    <div>
+        <h3><b>Brand name: </b> {{ eliquids.brand }}</h3>
+        <p><b>Product name: </b> {{ eliquids.name }}</p>
+        <p><b>Description:</b> {{ eliquids.description }}</p>
+        <p><b>Flavours: </b>{{ eliquids.flavours }}</p>
+    </div>
+{% endfor %}
+
+{% endblock %}

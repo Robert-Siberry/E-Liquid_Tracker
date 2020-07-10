@@ -139,14 +139,18 @@ def logout():
 
 @app.route('/')
 @app.route('/home')
-@login_required
 def home():
-    post_data = eliquids.query.all()
-    return render_template('homepage.html', description='Homepage', eliquids=post_data)
+    return render_template('homepage.html', description='Homepage')
+
+
+@app.route('/my')
+def my():
+    post_data = eliquids.query.filter_by(user_id=current_user.id).all()
+    return render_template('my.html', description='My Eliquids', eliquids=post_data)
 
 
 @app.route('/about')
-@login_required
+
 def about():
     return render_template('about.html', description='About')
 
