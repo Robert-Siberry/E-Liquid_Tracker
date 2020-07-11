@@ -146,3 +146,22 @@ class UpdateAccountForm(FlaskForm):
             Email()
         ])
     submit = SubmitField('Update')
+
+
+class UpdatePostForm(FlaskForm):
+    brand = StringField(
+        'Brand',
+        validators=[
+            DataRequired(),
+            Length(min=1, max=30)
+        ]
+    )
+
+    name = StringField(
+        'Name',
+        validators=[
+            DataRequired(),
+            Length(min=1, max=50)
+        ]
+    )
+    submit = SubmitField('Update')

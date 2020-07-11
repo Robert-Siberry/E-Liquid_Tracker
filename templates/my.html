@@ -1,3 +1,5 @@
+<title>My E-Liquids</title>
+
 {% extends "layout.html" %}
 
 {% block body_content %}
@@ -13,6 +15,7 @@
         <p><b>Product name: </b> {{ eliquids.name }}</p>
         <p><b>Description:</b> {{ eliquids.description }}</p>
         <p><b>Flavours: </b>{{ eliquids.flavours }}</p>
+        <a style="background-color: red" href="{{ url_for('update') }}">Update</a>
     </div>
 {% endfor %}
 

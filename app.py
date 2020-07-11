@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
 from wtforms import ValidationError
-from forms import EliquidsForm, RemoveForm, RegistrationForm, LoginForm, UpdateAccountForm
+from forms import EliquidsForm, RemoveForm, RegistrationForm, LoginForm, UpdateAccountForm, UpdatePostForm
 from flask_bcrypt import Bcrypt
 from flask_login import login_user, current_user, logout_user, login_required, UserMixin, LoginManager
 
@@ -143,14 +143,8 @@ def home():
     return render_template('homepage.html', description='Homepage')
 
 
-@app.route('/my')
-def my():
-    post_data = eliquids.query.filter_by(user_id=current_user.id).all()
-    return render_template('my.html', description='My Eliquids', eliquids=post_data)
-
 
 @app.route('/about')
-
 def about():
     return render_template('about.html', description='About')
 
@@ -172,6 +166,29 @@ def add():
         return redirect(url_for('home'))
     else:
         return render_template('post.html', description='add a post', form=form)
+
+
+@app.route('/my')
+def my():
+    post_data = eliquids.query.filter_by(user_id=current_user.id).all()
+    return render_template('my.html', description='My Eliquids', eliquids=post_data)
+
+
+@app.route('/update/<int:update>', methods=['GET', 'POST'])
+@login_required
+def update(up):
+    form = UpdatePostForm()
+    eliquidupate = eliquids.query.filter_by(id=up).first()
+    if form.validate_on_submit():
+        eliquidupate.brand = form.brand.data
+        eliquidupate.name = form.name.data
+        db.session.commit()
+        return redirect(url_for('my'))
+    elif request.method == 'GET':
+        form.brand.data = eliquids.brand
+        form.name.data = eliquids.name
+
+    return render_template('update.html', title='Update', form=form)
 
 
 @app.route('/create')
