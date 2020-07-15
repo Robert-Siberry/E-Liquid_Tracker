@@ -2,10 +2,9 @@ from flask import Flask, redirect, url_for, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from os import environ
 from wtforms import ValidationError
-from forms import EliquidsForm, RemoveForm, RegistrationForm, LoginForm, UpdateAccountForm, UpdatePostForm
+from forms import EliquidsForm, RegistrationForm, LoginForm, UpdateAccountForm, UpdatePostForm
 from flask_bcrypt import Bcrypt
 from flask_login import login_user, current_user, logout_user, login_required, UserMixin, LoginManager
-
 
 app = Flask(__name__)
 
@@ -46,8 +45,8 @@ class eliquids(db.Model):
         return ''.join(
             [
                 'description: ' + self.description + '\n'
-                'brand: ' + self.brand, + ' ' + self.name + '\n'
-                'flavours: ' + self.flavours
+                                                     'brand: ' + self.brand, + ' ' + self.name + '\n'
+                                                                                                 'flavours: ' + self.flavours
             ]
         )
 
@@ -129,6 +128,17 @@ def account():
     return render_template('account.html', title='Account', form=form)
 
 
+@app.route("/account/delete", methods=["GET", "POST"])
+@login_required
+def account_delete():
+    user = current_user.id
+    account = Users.query.filter_by(id=user).first()
+    logout_user()
+    db.session.delete(account)
+    db.session.commit()
+    return redirect(url_for('register'))
+
+
 @app.route("/logout")
 @login_required
 def logout():
@@ -140,7 +150,6 @@ def logout():
 @app.route('/home')
 def home():
     return render_template('homepage.html', description='Homepage')
-
 
 
 @app.route('/about')
@@ -194,36 +203,30 @@ def update(up):
     return render_template('update.html', title='update', form=form)
 
 
-#@app.route('/create')
-#def create():
-   # db.drop_all()
-  #  db.create_all()
- #   post = eliquids(brand='Bad Drip', name='Dont Care Bear', description='A candied treat that you can enjoy all day',
+# @app.route('/create')
+# def create():
+# db.drop_all()
+#  db.create_all()
+#   post = eliquids(brand='Bad Drip', name='Dont Care Bear', description='A candied treat that you can enjoy all day',
 #                    flavours="Gummy Bears, melon and Peach")
-    #post2 = eliquids(brand='Strapped', name='Tangy Tutti Frutti', description='A tongue tingling take on tutti frutti',
-    #                 flavours="Candied fruits and tangy Sherbet")
-    #db.session.add(post)
-    #db.session.add(post2)
-    #db.session.commit()
-   # return "added a table and populated it with some info"
+# post2 = eliquids(brand='Strapped', name='Tangy Tutti Frutti', description='A tongue tingling take on tutti frutti',
+#                 flavours="Candied fruits and tangy Sherbet")
+# db.session.add(post)
+# db.session.add(post2)
+# db.session.commit()
+# return "added a table and populated it with some info"
 
 
-@app.route('/delete', methods=['GET', 'POST'])
+@app.route('/remove/<int:up>', methods=['GET', 'POST'])
 @login_required
-def delete():
-    form = RemoveForm()
+def remove(up):
+    form = UpdatePostForm()
+    eliquid = eliquids.query.filter_by(id=up).first()
     if form.validate_on_submit():
-        delete_data = eliquids(
-            brand=form.brand.data,
-            name=form.name.data,
-            description=form.description.data,
-            flavours=form.flavours.data
-        )
-        db.session.query(eliquids).filter_by(name=form.name.data).delete()
-        db.session.commit()
-        return redirect(url_for('home'))
-    else:
-        return render_template('post.html', title='add a post', form=form)
-
-if __name__ == '__main__':
-    app.run()
+        eliquid.brand = form.brand.data
+        eliquid.name = form.name.data
+        eliquid.description = form.description.data
+        eliquid.flavours = form.flavours.data
+    db.session.delete(eliquid)
+    db.session.commit()
+    return redirect(url_for('my'))
