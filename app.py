@@ -93,7 +93,7 @@ def register():
             db.session.commit()
 
             return redirect(url_for('home'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('login.html', title='Login', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -191,18 +191,18 @@ def my():
   #  return render_template('update.html', title='Update', form=form)
 
 
-@app.route('/create')
-def create():
-    db.drop_all()
-    db.create_all()
-    post = eliquids(brand='Bad Drip', name='Dont Care Bear', description='A candied treat that you can enjoy all day',
-                    flavours="Gummy Bears, melon and Peach")
-    post2 = eliquids(brand='Strapped', name='Tangy Tutti Frutti', description='A tongue tingling take on tutti frutti',
-                     flavours="Candied fruits and tangy Sherbet")
-    db.session.add(post)
-    db.session.add(post2)
-    db.session.commit()
-    return "added a table and populated it with some info"
+#@app.route('/create')
+#def create():
+   # db.drop_all()
+  #  db.create_all()
+ #   post = eliquids(brand='Bad Drip', name='Dont Care Bear', description='A candied treat that you can enjoy all day',
+#                    flavours="Gummy Bears, melon and Peach")
+    #post2 = eliquids(brand='Strapped', name='Tangy Tutti Frutti', description='A tongue tingling take on tutti frutti',
+    #                 flavours="Candied fruits and tangy Sherbet")
+    #db.session.add(post)
+    #db.session.add(post2)
+    #db.session.commit()
+   # return "added a table and populated it with some info"
 
 
 @app.route('/delete', methods=['GET', 'POST'])
