@@ -1,4 +1,4 @@
-<title>My E-Liquids</title>
+<title xmlns="http://www.w3.org/1999/html">My E-Liquids</title>
 
 {% extends "layout.html" %}
 
@@ -15,7 +15,7 @@
         <p><b>Product name: </b> {{ eliquids.name }}</p>
         <p><b>Description:</b> {{ eliquids.description }}</p>
         <p><b>Flavours: </b>{{ eliquids.flavours }}</p>
-        <button><a href="{{ url_for('update', up=eliquids.id) }}">Update</a></button>
+        <a href="{{ url_for('update', up=eliquids.id) }}">Update</a>
     </div>
 {% endfor %}
 

@@ -177,17 +177,21 @@ def my():
 @login_required
 def update(up):
     form = UpdatePostForm()
-    eliquidupdate = eliquids.query.filter_by(id=up).first()
+    eliquid = eliquids.query.filter_by(id=up).first()
     if form.validate_on_submit():
-        eliquidupdate.brand = form.brand.data
-        eliquidupdate.name = form.name.data
+        eliquid.brand = form.brand.data
+        eliquid.name = form.name.data
+        eliquid.description = form.description.data
+        eliquid.flavours = form.flavours.data
         db.session.commit()
-        return redirect(url_for('update'))
+        return redirect(url_for('my'))
     elif request.method == 'GET':
-        form.brand.data = eliquids.brand
-        form.name.data = eliquids.name
+        form.brand.data = eliquid.brand
+        form.name.data = eliquid.name
+        form.description.data = eliquid.description
+        form.flavours.data = eliquid.flavours
 
-    return render_template('update.html', title='Update', form=form)
+    return render_template('update.html', title='update', form=form)
 
 
 #@app.route('/create')
