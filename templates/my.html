@@ -15,7 +15,7 @@
         <p><b>Product name: </b> {{ eliquids.name }}</p>
         <p><b>Description:</b> {{ eliquids.description }}</p>
         <p><b>Flavours: </b>{{ eliquids.flavours }}</p>
-        <p><b>ID No#: </b> {{ eliquids.id }}</p>
+        <button><a href="{{ url_for('update', up=eliquids.id) }}">Update</a></button>
     </div>
 {% endfor %}
 

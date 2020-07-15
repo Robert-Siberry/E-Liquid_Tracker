@@ -173,21 +173,21 @@ def my():
     return render_template('my.html', description='My Eliquids', eliquids=post_data)
 
 
-#@app.route('/update/<int:update>', methods=['GET', 'POST'])
-#@login_required
-#def update(up):
-    #form = UpdatePostForm()
-    #eliquidupate = eliquids.query.filter_by(id=up).first()
-    #if form.validate_on_submit():
-       # eliquidupate.brand = form.brand.data
-      #  eliquidupate.name = form.name.data
-     #   db.session.commit()
-    #    return redirect(url_for('my'))
-   # elif request.method == 'GET':
-  #      form.brand.data = eliquids.brand
- #       form.name.data = eliquids.name
-#
-  #  return render_template('update.html', title='Update', form=form)
+@app.route('/update/<int:up>', methods=['GET', 'POST'])
+@login_required
+def update(up):
+    form = UpdatePostForm()
+    eliquidupdate = eliquids.query.filter_by(id=up).first()
+    if form.validate_on_submit():
+        eliquidupdate.brand = form.brand.data
+        eliquidupdate.name = form.name.data
+        db.session.commit()
+        return redirect(url_for('update'))
+    elif request.method == 'GET':
+        form.brand.data = eliquids.brand
+        form.name.data = eliquids.name
+
+    return render_template('update.html', title='Update', form=form)
 
 
 #@app.route('/create')

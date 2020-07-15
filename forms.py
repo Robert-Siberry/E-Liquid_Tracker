@@ -164,4 +164,21 @@ class UpdatePostForm(FlaskForm):
             Length(min=1, max=50)
         ]
     )
+
+    description = StringField(
+        'Description',
+        validators=[
+            DataRequired(),
+            Length(min=10, max=1000)
+        ]
+    )
+
+    flavours = StringField(
+        'Flavours',
+        validators=[
+            DataRequired(),
+            Length(min=10, max=100)
+        ]
+    )
+
     submit = SubmitField('Update')
