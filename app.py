@@ -88,12 +88,11 @@ def register():
                          email=form.email.data,
                          password=hash_pw
                          )
-
             db.session.add(user)
             db.session.commit()
 
             return redirect(url_for('home'))
-    return render_template('login.html', title='Login', form=form)
+    return render_template('register.html', title='Login', form=form)
 
 
 @app.route("/login", methods=['GET', 'POST'])
