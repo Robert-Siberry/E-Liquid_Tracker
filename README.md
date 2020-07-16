@@ -5,6 +5,7 @@
 
 This project will involve concepts from all core training modules; more
 specifically, this will involve:
+
     Project Management
     Python Fundamentals
     Python Testing
