@@ -50,3 +50,7 @@ included:
     GitHub
     
 
+###Future Develpoment
+In the near future I am hoping to add a few more features to the app that will allow users to get suggestions
+for new E-Liquids to try based on what they already like and a feature that will let them tack how long there liquids
+and coils last them and give notifications to let them know when they will need to buy new ones.  
