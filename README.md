@@ -5,17 +5,17 @@
 
 This project will involve concepts from all core training modules; more
 specifically, this will involve:
-Project Management
-Python Fundamentals
-Python Testing
-Git
-Basic Linux
-Python Web Development
-Continuous Integration
-Cloud Fundamentals
-Databases
+    Project Management
+    Python Fundamentals
+    Python Testing
+    Git
+    Basic Linux
+    Python Web Development
+    Continuous Integration
+    Cloud Fundamentals
+    Databases
 
-## Overall Objective​
+### Overall Objective​
 
 ​
 
