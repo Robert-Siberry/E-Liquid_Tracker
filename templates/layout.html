@@ -11,17 +11,17 @@
 <body>
     <div>
         {% if current_user.is_authenticated %}
-            <a style="font-size: larger", href={{ url_for('home') }}>|Home|</a>
-            <a style="font-size: larger", href="{{ url_for('my') }}">|My E-Liquids|</a>
-            <a style="font-size: larger", href="{{ url_for('add') }}">|Add New|</a>
-            <a style="font-size: larger", href="{{ url_for('account') }}">|Account|</a>
-            <a style="font-size: larger", href="{{ url_for('about') }}">|About|</a>
-            <a style="font-size: larger", href="{{ url_for('logout') }}">|Log Out|</a>
+            <a style="font-size: larger", href={{ url_for('home') }}><button>Home</button></a>
+            <a style="font-size: larger", href="{{ url_for('my') }}"><button>My E-Liquids</button></a>
+            <a style="font-size: larger", href="{{ url_for('add') }}"><button>Add New</button></a>
+            <a style="font-size: larger", href="{{ url_for('account') }}"><button>Account</button></a>
+            <a style="font-size: larger", href="{{ url_for('about') }}"><button>About</button></a>
+            <a style="font-size: larger", href="{{ url_for('logout') }}"><button>Log Out</button></a>
         {% else %}
-            <a style="font-size: larger", href={{ url_for('home') }}>|Home|</a>
-            <a style="font-size: larger", href="{{ url_for('about') }}">|About|</a>
-            <a style="font-size: larger", href="{{ url_for('register') }}">|Register|</a>
-            <a style="font-size: larger", href="{{ url_for('login') }}">|Login|</a>
+            <a style="font-size: larger", href={{ url_for('home') }}><button>Home</button></a>
+            <a style="font-size: larger", href="{{ url_for('about') }}"><button>About</button></a>
+            <a style="font-size: larger", href="{{ url_for('register') }}"><button>Register</button></a>
+            <a style="font-size: larger", href="{{ url_for('login') }}"><button>Login</button></a>
 
         {% endif %}
     <br>
