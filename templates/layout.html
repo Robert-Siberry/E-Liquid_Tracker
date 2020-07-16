@@ -8,8 +8,8 @@
         <title>E-Liquid Tracker</title>
     {% endif %}
 </head>
-<body style="background-color: #b4e2ff">
-    <div class="navbar", style="background-color: red">
+<body>
+    <div>
         {% if current_user.is_authenticated %}
             <a style="font-size: larger", href={{ url_for('home') }}>|Home|</a>
             <a style="font-size: larger", href="{{ url_for('my') }}">|My E-Liquids|</a>
