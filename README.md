@@ -2,6 +2,14 @@
 
 ## E-Liquid Tracker
 
+### Contents
+
+    Objective​
+    Why E-Liquids
+    Planning
+    Technologies​
+    Project Overview 
+
 
 This project will involve concepts from all core training modules; more
 specifically, this will involve:
@@ -39,6 +47,12 @@ eliquids avilible it can be hard to keep track of what ones I have tried and lik
 To plan the project I made a trello board with my users stories and a list of task that need to be done. 
 As I have moved through the project I updated the board with task that were in progress and that were finished.
 I also created wireframes to try and get an idea of what the web app might look like once it was complete.
+
+#### My Trello Board
+![Trello Board Image](https://imgur.com/NZSFMk2.png)
+
+#### My Wire Frames
+![Wireframes Image](https://imgur.com/rl5eO9q.png)
 
 ### Technologies
 Through out this project I have used a variety of technologies to create and maintain my web app these 
