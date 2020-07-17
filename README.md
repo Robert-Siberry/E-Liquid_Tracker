@@ -41,7 +41,7 @@ Jenkins to commit to changes to the repository, utilising CI/CD methodologies.
 ### Why Eliquids
 
 I have recently quit smoking with the help of a vape and have found that there is such a wide variety of
-eliquids avilible it can be hard to keep track of what ones I have tried and liked and what ones I don't like
+eliquids available it can be hard to keep track of what ones I have tried and liked and what ones I don't like
 
 ### Planning
 To plan the project I made a trello board with my users stories and a list of task that need to be done. 
