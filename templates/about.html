@@ -3,24 +3,20 @@
 {% extends "layout.html" %}
 
 {% block body_content %}
-<h1 style="border:2px solid darkred;">
+<h1>
     A little bit about this project and the technologies that went in to making it
 </h1>
-    <body style="background-color: #000099">
-        <div style="background-color: darkred;">
-            <div style="color: lightcyan">
-                <p style="font-size: larger">
-                    This individual project involved creating an application that would allow users to track e-liquids that they have tried or want to try.
-                    <br>
-                    The system used tools such as MySQL queries, Python/Flask Libraries and a combination of HTML,
-                    <br>
-                    CSS front end and Jinja2 to weave everything together. This app was fully deployed as a service through Jenkins,
-                    <br>
-                    using a web hook to automatically generate builds from commits on GitHub. My application fully utilises CRUD functionality and
-                    <br>
-                    Jenkins to commit to changes to the repository, utilising CI/CD methodologies.
-                </p>
-            </div>
-        </div>
+    <body>
+        <p style="font-size: larger">
+            This individual project involved creating an application that would allow users to track e-liquids that they have tried or want to try.
+            <br>
+            The system used tools such as MySQL queries, Python/Flask Libraries and a combination of HTML,
+            <br>
+            CSS front end and Jinja2 to weave everything together. This app was fully deployed as a service through Jenkins,
+            <br>
+            using a web hook to automatically generate builds from commits on GitHub. My application fully utilises CRUD functionality and
+            <br>
+            Jenkins to commit to changes to the repository, utilising CI/CD methodologies.
+        </p>
     </body>
 {% endblock %}

@@ -65,6 +65,14 @@ included:
     Jenkins​
     GitHub
     
+### Versions
+
+V 1.20.1 - ability to add E-Liquids and see E-Liquids
+V 1.20.2 - added create account and logon function
+V 1.20.3 - limits user to only see their E-Liquids
+V 1.20.4 - added update and delete account functions
+V 1.20.5 - added update and delete E-Liquid functions
+
 
 ### Future Develpoment
 In the near future I am hoping to add a few more features to the app that will allow users to get suggestions
