@@ -8,7 +8,8 @@
     Why E-Liquids
     Planning
     Technologies​
-    Project Overview 
+    Versions
+    Future Devlopment 
 
 
 This project will involve concepts from all core training modules; more
