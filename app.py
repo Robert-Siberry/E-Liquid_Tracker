@@ -170,7 +170,7 @@ def add():
         )
         db.session.add(post_data)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('my'))
     else:
         return render_template('post.html', description='add a post', form=form)
 
